@@ -5,6 +5,7 @@ Route::get('/', function () {
 
 });
 Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
+Route::resource('post','PostController');
 
 
 

@@ -9,6 +9,7 @@
   <script src="{{ asset ('js/hoverable-collapse.js')}}"></script>
   <script src="{{ asset ('js/template.js')}}"></script>
   <script src="{{ asset ('js/todolist.js')}}"></script>
+  <script src="{{ asset ('js/file-upload.js')}}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{{ asset ('js/dashboard.js')}}"></script>
