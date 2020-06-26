@@ -36,6 +36,7 @@ class PostController extends Controller
      */
    public function store(Request $request)
     {
+        session()->flash('message','Post Update Successfully');
         return redirect()->route('admin.post.index');
     }
 
@@ -71,6 +72,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+         session()->flash('message','Post update Successfully');
          return redirect()->route('post.index');
     }
 
@@ -82,6 +84,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        session()->flash('message','Post Delete Successfully');
+        return redirect()->route('post.index');
     }
 }

@@ -15,9 +15,13 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+           @include('layouts.admin._alerts')
+
           @yield('content')
 
+         
         </div>
+        
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
