@@ -10,7 +10,7 @@
 					<div class="card-body">
 						<h4 class="card-title">List of User</h4>
 						<p class="card-description">
-							Add class <code></code>
+							Users <code></code>
 						</p>
 						<div class="table-responsive">
 							<table class="table">
@@ -23,22 +23,22 @@
 									</tr>
 								</thead>
 								<tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>
-                                    <a href="{{ route('user.edit',$user->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('user.destroy',$user->id) }}" class="d-inline-block" method="post">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
+									@foreach($users as $user)
+									<tr>
+										<td>{{ $user->id }}</td>
+										<td>{{ $user->name }}</td>
+										<td>{{ $user->email }}</td>
+										<td>
+											<a href="{{ route('user.edit',$user->id) }}" class="btn btn-primary btn-sm">Edit</a>
+											<form action="{{ route('user.destroy',$user->id) }}" class="d-inline-block" method="post">
+												@csrf
+												@method('delete')
+												<button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you confirm?')">Delete</button>
+											</form>
+										</td>
+									</tr>
+									@endforeach
+								</tbody>
 							</table>
 						</div>
 					</div>
