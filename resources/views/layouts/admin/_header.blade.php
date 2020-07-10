@@ -121,10 +121,10 @@
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
-                <i class="ti-power-off text-primary"></i>
-                Logout
-              </a>
+              <form action="" class="" method="post">
+                @csrf
+                <button type="" class="ti-power-off text-primary">Logout</button>
+              </form>
             </div>
           </li>
         </ul>
