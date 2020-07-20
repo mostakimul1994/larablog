@@ -121,7 +121,7 @@
                 <i class="ti-settings text-primary"></i>
                 Settings
               </a>
-              <form action="" class="" method="post">
+              <form action="{{ route ('logout')}}" class="" method="post">
                 @csrf
                 <button type="" class="ti-power-off text-primary">Logout</button>
               </form>
