@@ -10,13 +10,26 @@
 					<div class="col-12 col-md-10 offset-md-1">
 						<div class="card">
 							<div class="card-body">
-								<h3 class="mb-4 mt-4">Title</h3>
-								<p><strong>News</strong>,<i>Publiced</i><br/>
-									5 Jun, 2020
+								<h3 class="mb-4 mt-4">{{ ucfirst($post->title) }}</h3>
 
+									<p class="card-subtitle">
+									@foreach($authors as $author)
+									@if($author->id== $post->author_id) {{ $author->name }} @endif
+										
+									@endforeach,
+									
 								</p>
-								<p>Before you start working with the template, we suggest you go through the pages that are bundled with the theme. Most of the template example pages contain quick tips on how to create or use a component which can
-								be really helpful when you need to create something on the fly.</p>
+								<p class="card-subtitle">
+									@foreach($categories as $category)
+									@if($category->id== $post->category_id) {{ $category->name }} @endif
+										
+									@endforeach,<i>{{ ucfirst($post->status) }}</i>
+									<br>
+									{{ $post->published_at }}
+									
+								</p>
+								<p>{{$post->content}}</p>
+							
 							</div>
 							<div class="col-md-12">
 								<button class="btn btn-info btn-sm"><a href="{{ route ('post.index')}}">Back Home</a></button>
