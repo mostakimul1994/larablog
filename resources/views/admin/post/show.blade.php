@@ -11,7 +11,13 @@
 						<div class="card">
 							<div class="card-body">
 								<h3 class="mb-4 mt-4">{{ ucfirst($post->title) }}</h3>
+									@if($post->image !=null)
+										<p class=""> 
+											<img src="{{ asset ($post->image)}}" width="100%" alt="">
+										</p>
 
+
+									@endif
 									<p class="card-subtitle">
 									@foreach($authors as $author)
 									@if($author->id== $post->author_id) {{ $author->name }} @endif
@@ -32,7 +38,7 @@
 							
 							</div>
 							<div class="col-md-12">
-								<button class="btn btn-info btn-sm"><a href="{{ route ('post.index')}}">Back Home</a></button>
+								<button type="btn"  class="btn btn-info btn-sm"><a href="{{ route ('post.index')}}">Back Home</a></button>
 							</div>
 						</div>
 					</div>

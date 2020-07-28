@@ -9,7 +9,7 @@
 			<p class="card-description">
 				posts
 			</p>
-			<form class="forms-sample" action="{{ route ('post.store')}}" method="post">
+			<form class="forms-sample" action="{{ route ('post.store')}}" method="post" enctype="multipart/form-data">
 				@csrf
 				@method('post')
 				<div class="form-group">
@@ -64,7 +64,7 @@
 					<label>File upload</label>
 					<input type="file" name="image" class="file-upload-default">
 					<div class="input-group col-sm-6">
-						<input type="text" class="form-control file-upload-info" name="image" disabled placeholder="Upload Image">
+						<input  name="image" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
 						<span class="input-group-append">
 							<button class="file-upload-browse btn btn-primary" type="button">Upload file</button>
 						</span>

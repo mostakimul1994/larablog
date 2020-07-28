@@ -40,20 +40,29 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-   public function store(Request $request)
+    public function store(Request $request)
     {
-        $data['category_id'] = $request->category_id;
-        $data['author_id'] = $request->author_id;
-        $data['title'] = $request->title;
-        $data['content'] = $request->content;
-        $data['status'] = $request->status;
-        if($request->status=='published'){
-            $data['published_at']=date('Y-m-d');
-        }
-        Post::create($data);
-        session()->flash('message','Post Update Successfully');
-        return redirect()->route('post.index');
+     if($request->hasFile('image')){
+
+        $file=$request->file('image');
+        $path='images/upload/posts';
+        $file_name = encrypt(time().rand(00000,99999)).'.'.$file->getClientOriginalExtension();
+        $file->move($path,$file_name);
+        $data['image'] = $path.'/'.$file_name;
     }
+
+    $data['category_id'] = $request->category_id;
+    $data['author_id'] = $request->author_id;
+    $data['title'] = $request->title;
+    $data['content'] = $request->content;
+    $data['status'] = $request->status;
+    if($request->status=='published'){
+        $data['published_at']=date('Y-m-d');
+    }
+    Post::create($data);
+    session()->flash('message','Post Update Successfully');
+    return redirect()->route('post.index');
+}
 
 
     /**
@@ -93,14 +102,28 @@ class PostController extends Controller
      */
     public function update(Request $request,Post $post)
     {
+
+        if($request->hasFile('image')){
+
+            $file=$request->file('image');
+            $path='images/upload/posts';
+            $file_name = encrypt(time().rand(00000,99999)).'.'.$file->getClientOriginalExtension();
+            $file->move($path,$file_name);
+            $data['image'] = $path.'/'.$file_name;
+            if(file_exists($post->image)){
+                unlink($post->image);
+            }
+            
+        }
+
         $data['category_id'] = $request->category_id;
         $data['author_id'] = $request->author_id;
         $data['title'] = $request->title;
         $data['content'] = $request->content;
         $data['status'] = $request->status;
         $post->update($data);
-         session()->flash('message','Post update Successfully');
-         return redirect()->route('post.index');
+        session()->flash('message','Post update Successfully');
+        return redirect()->route('post.index');
     }
 
     /**
@@ -110,7 +133,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
+
     {
+        if(file_exists($post->image)){
+            unlink($post->image);
+        }
         $post->delete();
         session()->flash('message','Post Delete Successfully');
         return redirect()->route('post.index');

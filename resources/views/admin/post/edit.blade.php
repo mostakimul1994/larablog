@@ -9,7 +9,7 @@
 			<p class="card-description">
 				posts
 			</p>
-			<form class="forms-sample" action="{{ route ('post.update',1)}}" method="post">
+			<form class="forms-sample" action="{{ route ('post.update',$post->id )}}" method="post" enctype="multipart/form-data">
 				@csrf
 				@method('put')
 				<div class="form-group">
@@ -68,7 +68,11 @@
 						<span class="input-group-append">
 							<button class="file-upload-browse btn btn-primary" type="button">Upload file</button>
 						</span>
+
 					</div>
+					@if($post->image !=null)
+						<img src="{{ asset ($post->image)}}" width="30%" alt="">
+					@endif
 				</div>
 
 				
