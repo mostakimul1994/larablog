@@ -29,6 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
+      
         $data['categories'] = Category::orderBy('name')->get();
         $data['authors'] = Author::orderBy('name')->get();
         return view('admin.post.create',$data);
@@ -42,8 +43,17 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-     if($request->hasFile('image')){
+          $request->validate([
+            'category_id' =>'required',
+            'author_id' =>'required',
+            'title' =>'required',
+            'content' =>'required',
+            'status' =>'required',
+            'image' =>'mimes:jpeg,png',
 
+        ]);
+
+     if($request->hasFile('image')){
         $file=$request->file('image');
         $path='images/upload/posts';
         $file_name = encrypt(time().rand(00000,99999)).'.'.$file->getClientOriginalExtension();
@@ -55,7 +65,7 @@ class PostController extends Controller
     $data['author_id'] = $request->author_id;
     $data['title'] = $request->title;
     $data['content'] = $request->content;
-    $data['status'] = $request->status;
+    $data['image'] = 'mims:jpeg,png';
     if($request->status=='published'){
         $data['published_at']=date('Y-m-d');
     }
@@ -102,6 +112,15 @@ class PostController extends Controller
      */
     public function update(Request $request,Post $post)
     {
+          $request->validate([
+            'category_id' =>'required',
+            'author_id' =>'required',
+            'title' =>'required',
+            'content' =>'required',
+            'status' =>'required',
+            'image' =>'mimes:jpeg,png',
+
+        ]);
 
         if($request->hasFile('image')){
 
