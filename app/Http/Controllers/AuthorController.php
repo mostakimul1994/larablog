@@ -86,8 +86,11 @@ class AuthorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Author $author)
-    {
+  {
+      
         $author->delete();
+        session()->flash('message','Author Delete Successfully');
         return redirect()->route('author.index');
     }
 }
+
