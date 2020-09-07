@@ -69,6 +69,11 @@ class PostController extends Controller
     if($request->status=='published'){
         $data['published_at']=date('Y-m-d');
     }
+
+     if($request->has('is_featured')){
+        $data['is_featured']= $request->is_featured;
+    }
+
     Post::create($data);
     session()->flash('message','Post Update Successfully');
     return redirect()->route('post.index');
