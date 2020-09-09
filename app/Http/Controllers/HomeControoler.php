@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class HomeControoler extends Controller
 {
     public function index(){
-    	$data['featured_posts'] = Post::where('is_featured',1)->where('status','published')->get();
+    	$data['featured_posts'] = Post::with(['category','author'])->published()->where('is_featured',1)->get();
+    	$data['latest_posts'] = Post::with(['category','author'])->published()->orderBy('id','desc')->paginate(6);
     	return view('front.index',$data);
     }
 }
