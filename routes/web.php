@@ -4,7 +4,8 @@
 
 
 
-Route::get('/', 'HomeControoler@index');
+Route::get('/', 'HomeControoler@index')->name('home');
+Route::get('post/{id}/details', 'HomeControoler@details')->name('post.details');
 
 Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
 
