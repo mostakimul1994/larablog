@@ -26,4 +26,7 @@ class HomeControoler extends Controller
 		$data['related_posts'] = Post::with(['category','author'])->published()->where('category_id',$post->category_id)->orderBy('id','desc')->limit(3)->get();
 		return view('front.details',$data);
 	}
+	public function about(){
+		return view('front.about');
+	}
 }
